@@ -1,25 +1,20 @@
-[![npm version](https://badge.fury.io/js/typegql.svg)](https://badge.fury.io/js/typegql)
-[![npm version](https://david-dm.org/prismake/typegql.svg)](https://david-dm.org/prismake/typegql)
-[![codecov](https://codecov.io/gh/prismake/typegql/branch/master/graph/badge.svg)](https://codecov.io/gh/prismake/typegql)
-[![Build Status](https://api.travis-ci.org/prismake/typegql.svg?branch=master)](https://travis-ci.org/prismake/typegql)
-
 ### What is `typegql`?
 
 ![demo](assets/demo.gif)
 
 typegql is set of decorators allowing creating GraphQL APIs quickly and in type-safe way.
 
-* [Documentation](https://prismake.github.io/typegql/)
+- [Documentation](https://prismake.github.io/typegql/)
 
 ### Examples:
 
-* [Basic Express example](examples/basic-express-server)
-* [Typeorm integration example](examples/typeorm-basic-integration)
-* [Forward resolution - eg. query only needed db fields](examples/forward-resolution)
-* [Nested mutations or queries](examples/nested-mutation-or-query)
-* [Custom decorators / Higher order decorators](examples/custom-decorators)
-* [Serverless eg. AWS Lambda](examples/serverless)
-* [Merge schemas](examples/merge-schemas)
+- [Basic Express example](examples/basic-express-server)
+- [Typeorm integration example](examples/typeorm-basic-integration)
+- [Forward resolution - eg. query only needed db fields](examples/forward-resolution)
+- [Nested mutations or queries](examples/nested-mutation-or-query)
+- [Custom decorators / Higher order decorators](examples/custom-decorators)
+- [Serverless eg. AWS Lambda](examples/serverless)
+- [Merge schemas](examples/merge-schemas)
 
 ## Basic example
 
@@ -62,7 +57,9 @@ app.use(
     graphiql: true,
   }),
 );
-app.listen(3000, () => console.log('Graphql API ready on http://localhost:3000/graphql'));
+app.listen(3000, () =>
+  console.log('Graphql API ready on http://localhost:3000/graphql'),
+);
 ```
 
 ## Adding nested types
@@ -82,7 +79,14 @@ mutation {
 Such query will have a bit more code and here it is:
 
 ```typescript
-import { Schema, Query, ObjectType, Field, Mutation, compileSchema } from 'typegql';
+import {
+  Schema,
+  Query,
+  ObjectType,
+  Field,
+  Mutation,
+  compileSchema,
+} from 'typegql';
 
 @ObjectType({ description: 'Simple product object type' })
 class Product {
@@ -116,10 +120,10 @@ Until now, `typegql` was able to guess type of every field from typescript type 
 
 There are, however, some cases where we'd have to define them explicitly.
 
-* We want to strictly tell if field is nullable or not
-* We want to be explicit about if some `number` type is `Float` or `Int` (`GraphQLFloat` or `GraphQLInt`) etc
-* Function we use returns type of `Promise<SomeType>` while field itself is typed as `SomeType`
-* List (Array) type is used. (For now, typescript `Reflect` api is not able to guess type of single array item. This might change in the future)
+- We want to strictly tell if field is nullable or not
+- We want to be explicit about if some `number` type is `Float` or `Int` (`GraphQLFloat` or `GraphQLInt`) etc
+- Function we use returns type of `Promise<SomeType>` while field itself is typed as `SomeType`
+- List (Array) type is used. (For now, typescript `Reflect` api is not able to guess type of single array item. This might change in the future)
 
 Let's modify our `Product` so it has additional `categories` field that will return array of strings. For sake of readibility, I'll ommit all fields we've defined previously.
 
@@ -135,10 +139,10 @@ class Product {
 
 We've added `{ type: [String] }` as `@Field` options. Type can be anything that is resolvable to `GraphQL` type
 
-* Native JS scalars: `String`, `Number`, `Boolean`.
-* Any type that is already compiled to `graphql` eg. `GraphQLFloat` or any type from external graphql library etc
-* Every class decorated with `@ObjectType`
-* One element array of any of above for list types eg. `[String]` or `[GraphQLFloat]`
+- Native JS scalars: `String`, `Number`, `Boolean`.
+- Any type that is already compiled to `graphql` eg. `GraphQLFloat` or any type from external graphql library etc
+- Every class decorated with `@ObjectType`
+- One element array of any of above for list types eg. `[String]` or `[GraphQLFloat]`
 
 ## Writing Asynchronously
 

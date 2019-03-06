@@ -1,6 +1,6 @@
 {
-  "name": "typegql",
-  "version": "0.6.1",
+  "name": "@dadoudidou/typegql",
+  "version": "0.6.2",
   "main": "lib/index.js",
   "types": "types/index.d.ts",
   "license": "MIT",
@@ -9,19 +9,17 @@
     "test:watch": "jest --watch",
     "build:rollup": "rollup src/index.ts -c",
     "build:types": "ttsc --project ttsconfig.json",
-    "build":
-      "rimraf types lib && yarn run build:rollup && yarn run build:types",
-    "prepublishOnly": "rimraf types lib && yarn build",
+    "build": "rimraf types lib && npm run build:rollup && npm run build:types",
     "docs": "gitbook serve",
     "docs:build": "gitbook build ./docs",
     "precommit": "pretty-quick --staged"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/prismake/typegql"
+    "url": "https://github.com/Dadoudidou/typegql"
   },
   "devDependencies": {
-    "@types/graphql": "^0.13.0",
+    "@types/graphql": "^14.0.7",
     "@types/jest": "^22.2.3",
     "@types/node": "^10.1.2",
     "@types/object-path": "^0.9.29",
@@ -41,8 +39,8 @@
     "typescript": "^2.8.1"
   },
   "dependencies": {
-    "graphql": "^0.13.2",
+    "graphql": "^14.1.1",
     "object-path": "^0.11.4",
-    "reflect-metadata": "^0.1.12"
+    "reflect-metadata": "^0.1.13"
   }
 }
